@@ -210,6 +210,7 @@ class ProfCoursTest extends TestCase
         foreach ( $record_prof_a as $record_prof ) {
             print $record_prof;
         }
+
         print "################################################################\n\n";
         $this->assertCount(count(Self::$prof_a), $record_prof_a, "Nombre d'enregistrement égale pour Prof\n");
 
@@ -221,6 +222,7 @@ class ProfCoursTest extends TestCase
         foreach ( $record_cours_a as $record_cours ) {
             print $record_cours;
         }
+
         print "################################################################\n\n";
         $this->assertCount(count(Self::$cours_a), $record_cours_a, "Nombre d'enregistrement égale pour Cours\n");
         
