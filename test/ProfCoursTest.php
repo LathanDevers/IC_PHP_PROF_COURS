@@ -84,9 +84,9 @@ class ProfCoursTest extends TestCase
         ];
 
         self::$cours_a = [
-            new Cours("Cours1", "2", 1),       // idcours = 1
-            new Cours("Cours2", "2.5", 3),     // idcours = 2
-            new Cours("Cours3", "3", 5),       // idcours = 3
+            new Cours("IoT", "10", 1),       // idcours = 1
+            new Cours("IA", "12", 3),     // idcours = 2
+            new Cours("EDL", "5", 6),       // idcours = 3
             new Cours("Cours4", "2", 3),       // idcours = 4
             new Cours("Cours5", "3", 3),       // idcours = 5
             new Cours("Cours6", "2", 4),       // idcours = 6
@@ -180,6 +180,10 @@ class ProfCoursTest extends TestCase
         foreach (self::$cours_a as $cours) {
             $cours->add($conn);
         }
+        $expected = count(self::$cours_a);
+        $num_records = Cours::count($conn);
+        $this->assertEquals($expected, $num_records, "Enregistrement des cours ...\n");
+        $this->assertCount($num_records, self::$cours_a, "Enregistrement des cours ...\n");
         
         /**
         *
@@ -191,7 +195,7 @@ class ProfCoursTest extends TestCase
     
     
     /**
-     * Nous compterons le nobre d'enregistrement que nous comparerons au nombre d'élément du tableau.
+     * Nous compterons le nombre d'enregistrement que nous comparerons au nombre d'élément du tableau.
      * REQUIRE: Assurez vous qu'aucune suppression n'a été faite.
      * @order 2
      */
@@ -211,6 +215,14 @@ class ProfCoursTest extends TestCase
 
         
         // Cours
+
+        $record_coursa = Cours::printAll($conn);
+        print "########## - LISTE DES COURS - AVANT TOUT ########## \n";
+        foreach ( $record_cours_a as $record_cours ) {
+            print $record_cours;
+        }
+        print "################################################################\n\n";
+        $this->assertCount(count(Self::$cours_a), $record_cours_a, "Nombre d'enregistrement égale pour Cours\n");
         
         /**
         *
